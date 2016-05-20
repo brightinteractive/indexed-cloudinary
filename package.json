@@ -1,8 +1,8 @@
 {
-  "name": "holiday-weather",
+  "name": "indexed-cloudinary",
   "version": "0.0.1",
-  "description": "Holiday Weather back-office for bringing images into the website.",
-  "author": "Bright Interactive",
+  "description": "Functions for adding carousel/wallpaper images to page from Cloudinary images indexed in ElasticSearch.",
+  "author": "DAM Plus",
   "engines": {
     "node": "5.6.0"
   },
