@@ -14,7 +14,7 @@ var gulp = require('gulp'),
     brightconfig = require('stylelint-config-bright'),
     uglify = require('gulp-uglify'),
     buffer = require('vinyl-buffer'),
-    sassFiles = ['src/main/resources/static/sass/**/*.scss'],
+    sassFiles = ['src/sass/**/*.scss'],
     jsFiles = ['src/js/**/*.js'];
 
 gulp.task('transpile-min', function () {
@@ -53,7 +53,7 @@ gulp.task('sass', function () {
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('src/main/resources/static/css'));
+        .pipe(gulp.dest('dist'));
 });
 
 // Run postcss after the sass task has finished
@@ -62,7 +62,7 @@ gulp.task('css', ['sass', 'cssLint'], function () {
         autoprefixer({browsers: ['last 2 versions', 'ie 9', 'ie 10']})
     ];
 
-    return gulp.src('src/main/resources/static/css/*.css')
+    return gulp.src('dist/*.css')
         .pipe(sourcemaps.init())
         .pipe(postcss(processors))
         .pipe(sourcemaps.write())
@@ -70,7 +70,7 @@ gulp.task('css', ['sass', 'cssLint'], function () {
             console.log(details.name + ': ' + details.stats.originalSize);
             console.log(details.name + ': ' + details.stats.minifiedSize);
         }))
-        .pipe(gulp.dest('src/main/resources/static/css'));
+        .pipe(gulp.dest('dist'));
 });
 
 

@@ -14,7 +14,7 @@ export function displayCarousel(elementSelector, {indexHost, searchTerms, cloudN
         .then(hits => hits.map(hit => new Image(imageTransformer, hit)))
         .then(images => images.map(image => image.toHtml()))
         .then(imageListItems => imageListItems.join(''))
-        .then(imagesHtml => `<ul>${imagesHtml}</ul>`)
+        .then(imagesHtml => `<div class="carousel"><ul>${imagesHtml}</ul></div>`)
         .then(carouselHtml => {
             const carousel = $.parseHTML(carouselHtml);
             div.append(carousel);
