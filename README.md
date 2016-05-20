@@ -2,6 +2,10 @@
 
 Functions for adding Cloudinary images which are indexed in ElasticSearch to a page.
 
+## Usage
+
+Download [indexed-cloudinary.min.js](https://github.com/damplus/indexed-cloudinary/raw/master/dist/indexed-cloudinary.min.js).
+
 ## Development Setup
 
 Checkout with:
