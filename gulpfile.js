@@ -29,7 +29,7 @@ gulp.task('transpile-min', function () {
         .bundle()
         .pipe(source('indexed-cloudinary.min.js'))
         .pipe(buffer())
-        .pipe(uglify({mangle: false}))
+        .pipe(uglify({mangle: true}))
         .pipe(gulp.dest('dist'));
 });
 
