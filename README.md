@@ -1,4 +1,5 @@
 # Indexed Cloudinary
+[![Build Status](https://travis-ci.org/damplus/indexed-cloudinary.svg?branch=master)](https://travis-ci.org/damplus/indexed-cloudinary.svg?branch=master)
 
 Functions for adding Cloudinary images which are indexed in ElasticSearch to a page.
 
