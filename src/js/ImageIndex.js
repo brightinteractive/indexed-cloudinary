@@ -1,7 +1,5 @@
-import {Client} from 'elasticsearch';
-
 export default class ImageIndex {
-    constructor(host) {
+    constructor(host, Client = require('elasticsearch').Client) {
         this.client = new Client({host});
     }
 

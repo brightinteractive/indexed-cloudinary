@@ -1,16 +1,16 @@
 import ImageIndex from './ImageIndex';
 import ImageTransformer from './ImageTransformer';
 import Image from './Image';
-import $ from 'jquery';
-import 'lightslider';
 
-export function displayCarousel(elementSelector, {indexHost, searchTerms, cloudName, transformationOptions}) {
-    const imageIndex = new ImageIndex(indexHost);
+export function displayCarousel(elementSelector, {indexHost, searchTerms, cloudName, transformationOptions}, {$, Cloudinary, ElasticSearch} = {}) {
+    if (!$) $ = require('jquery');
+    
+    const imageIndex = new ImageIndex(indexHost, ElasticSearch);
     const hitsPromise = imageIndex.search(searchTerms);
-    const imageTransformer = new ImageTransformer(cloudName, transformationOptions);
+    const imageTransformer = new ImageTransformer(cloudName, transformationOptions, Cloudinary);
     const div = $(elementSelector);
 
-    hitsPromise
+    return hitsPromise
         .then(hits => hits.map(hit => new Image(imageTransformer, hit)))
         .then(images => images.map(image => image.toHtml()))
         .then(imageListItems => imageListItems.join(''))
@@ -28,12 +28,14 @@ export function displayCarousel(elementSelector, {indexHost, searchTerms, cloudN
         });
 }
 
-export function changeWallpaper({indexHost, searchTerms, cloudName, transformationOptions}) {
-    const imageIndex = new ImageIndex(indexHost);
+export function changeWallpaper({indexHost, searchTerms, cloudName, transformationOptions}, {$, Cloudinary, ElasticSearch} = {}) {
+    if (!$) $ = require('jquery');
+    
+    const imageIndex = new ImageIndex(indexHost, ElasticSearch);
     const hitsPromise = imageIndex.search(searchTerms);
-    const imageTransformer = new ImageTransformer(cloudName, transformationOptions);
+    const imageTransformer = new ImageTransformer(cloudName, transformationOptions, Cloudinary);
 
-    hitsPromise
+    return hitsPromise
         .then(hits => hits.map(hit => new Image(imageTransformer, hit)))
         .then(images => images[Math.floor(Math.random() * images.length)])
         .then(image => {
@@ -43,5 +45,3 @@ export function changeWallpaper({indexHost, searchTerms, cloudName, transformati
                 .css('background-attachment', 'fixed')
         });
 }
-
-window.indexedCloudinary = {displayCarousel, changeWallpaper};

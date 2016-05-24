@@ -1,7 +1,5 @@
-import {Cloudinary} from 'cloudinary-core';
-
 export default class ImageTransformer {
-    constructor(cloudName, options) {
+    constructor(cloudName, options, Cloudinary = require('cloudinary-core').Cloudinary) {
         this.cloudinary = Cloudinary.new({cloud_name: cloudName});
         this.options = options;
     }

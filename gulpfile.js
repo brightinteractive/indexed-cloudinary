@@ -21,7 +21,7 @@ gulp.task('transpile-min', function () {
     process.env.NODE_ENV = 'production';
 
     browserify({
-        entries: 'src/js/indexed-cloudinary.js',
+        entries: 'index.js',
         extensions: ['.js'],
         debug: false
     })
@@ -35,7 +35,7 @@ gulp.task('transpile-min', function () {
 
 gulp.task('transpile', function () {
     browserify({
-        entries: 'src/js/indexed-cloudinary.js',
+        entries: 'index.js',
         extensions: ['.js'],
         debug: true
     })
