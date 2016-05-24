@@ -19,3 +19,11 @@ Install dependencies with:
 Build output with:
 
 `npm run build`
+
+Run tests with:
+
+`npm test`
+
+Run a local development server with:
+
+`npm start`
