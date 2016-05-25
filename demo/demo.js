@@ -18,7 +18,7 @@ $(document).ready(function () {
             }
     );
 
-    indexedCloudinary.changeWallpaper({
+    indexedCloudinary.changeWallpaper('#credit', {
                 indexHost: indexHost,
                 searchTerms: searchTerms.concat(['wallpaper']),
                 cloudName: cloudName,

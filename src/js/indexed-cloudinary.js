@@ -28,7 +28,7 @@ export function displayCarousel(elementSelector, {indexHost, searchTerms, cloudN
         });
 }
 
-export function changeWallpaper({indexHost, searchTerms, cloudName, transformationOptions}, {$, Cloudinary, ElasticSearch} = {}) {
+export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudName, transformationOptions}, {$, Cloudinary, ElasticSearch} = {}) {
     if (!$) $ = require('jquery');
     
     const imageIndex = new ImageIndex(indexHost, ElasticSearch);
@@ -43,5 +43,6 @@ export function changeWallpaper({indexHost, searchTerms, cloudName, transformati
                 .css('background-image', `url("${image.url}")`)
                 .css('background-size', 'cover')
                 .css('background-attachment', 'fixed')
+            $(creditSelector).append(image.description());
         });
 }
