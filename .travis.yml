@@ -5,13 +5,12 @@ node_js:
 script: "npm test && npm build"
 deploy:
   provider: releases
+  api_key:
+    secure: UX3Lgv7HZXWzhunCHe2ZstI5v35VWsxjqjC632OtUF1Ov8Evp4dM8BUvqCGrRQa2PxGP5agcMBEpv31xuI/tWtN9gSkn61bpak7Ncm+cYIQRDWYLh0yBxTUHMq3pqydoEJ9jUSlEh3CbgctcAobES438+t9dBCPYqApdemlD+7TkFXJTtSbOWZ1kwe8Fakm+wcDMBkA6EmxmWmiHgvECsEwxDVqkaCbQpIoBUd/Z5CvyefES3jrRiVvbqC94EqYlgat1XO7gVoTKUXCC+r8uWIBjokFiejxmH/EH0MLlToOHo2ZHGdgTklWOom3wUcBj1z2n1tG2uUEyHMOGl7asGQN5F8OPF9mXl/mj1mVBU5y7Z+1o+FughoREBEh/R0I5RU/7KY/dMC3XzN0rf2q7x8Gv0dX+ge53863tzOPxBYqpxBDP/Wb5piNFdCAOLKBTyxOwaFztR+6szZbGvo7VGmQgeM3yBYU7kIoGl9Uspmm97gOYwJSvWG0Y/NvfD07YwMfY6uryBZgBG5YHOmOmSNv3WDzHl1k2GcQBm6ZZBZtC82qZ9ZEomJtzSqOFgxUzkqCvSqtJQw1KyokPtEWiCdNl6kR2/HdCrUfmVHaRm2Ok+z7Nhv/ycfazp+55MsrWmojTpizVkMIOyDr9nXk9ZM4kgGeHJpzLpMvw5aXyy84=
   file:
-    - indexed-cloudinary.css
-    - indexed-cloudinary.js
-    - indexed-cloudinary.min.js
+    - dist/indexed-cloudinary.css
+    - dist/indexed-cloudinary.js
+    - dist/indexed-cloudinary.min.js
   skip_cleanup: true
   on:
     tags: true
-env:
-  global:
-    secure: UX3Lgv7HZXWzhunCHe2ZstI5v35VWsxjqjC632OtUF1Ov8Evp4dM8BUvqCGrRQa2PxGP5agcMBEpv31xuI/tWtN9gSkn61bpak7Ncm+cYIQRDWYLh0yBxTUHMq3pqydoEJ9jUSlEh3CbgctcAobES438+t9dBCPYqApdemlD+7TkFXJTtSbOWZ1kwe8Fakm+wcDMBkA6EmxmWmiHgvECsEwxDVqkaCbQpIoBUd/Z5CvyefES3jrRiVvbqC94EqYlgat1XO7gVoTKUXCC+r8uWIBjokFiejxmH/EH0MLlToOHo2ZHGdgTklWOom3wUcBj1z2n1tG2uUEyHMOGl7asGQN5F8OPF9mXl/mj1mVBU5y7Z+1o+FughoREBEh/R0I5RU/7KY/dMC3XzN0rf2q7x8Gv0dX+ge53863tzOPxBYqpxBDP/Wb5piNFdCAOLKBTyxOwaFztR+6szZbGvo7VGmQgeM3yBYU7kIoGl9Uspmm97gOYwJSvWG0Y/NvfD07YwMfY6uryBZgBG5YHOmOmSNv3WDzHl1k2GcQBm6ZZBZtC82qZ9ZEomJtzSqOFgxUzkqCvSqtJQw1KyokPtEWiCdNl6kR2/HdCrUfmVHaRm2Ok+z7Nhv/ycfazp+55MsrWmojTpizVkMIOyDr9nXk9ZM4kgGeHJpzLpMvw5aXyy84=

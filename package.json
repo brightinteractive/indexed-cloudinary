@@ -1,6 +1,6 @@
 {
   "name": "indexed-cloudinary",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Functions for adding carousel/wallpaper images to page from Cloudinary images indexed in ElasticSearch.",
   "author": "DAM Plus",
   "engines": {
