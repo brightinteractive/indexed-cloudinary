@@ -1,6 +1,6 @@
 {
   "name": "indexed-cloudinary",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Functions for adding carousel/wallpaper images to page from Cloudinary images indexed in ElasticSearch.",
   "author": "DAM Plus",
   "engines": {
@@ -34,7 +34,6 @@
     "jquery": "^2.2.4",
     "jsdom": "^9.2.0",
     "mocha": "^2.5.2",
-    "npm-bump": "0.0.18",
     "postcss-reporter": "^1.2.1",
     "postcss-scss": "^0.1.2",
     "sass-loader": "^3.2.0",
@@ -51,9 +50,8 @@
     "build-dev": "gulp build-dev",
     "start": "webpack-dev-server --config demo/webpack.config.js --content-base demo",
     "test": "mocha --compilers js:babel-core/register src/js/test/*.js",
-    "release.major": "npm run test && npm run build && npm-bump major",
-    "release.minor": "npm run test && npm run build && npm-bump minor",
-    "release.patch": "npm run test && npm run build && npm-bump patch"
+    "preversion": "npm run test && npm run build && git add dist",
+    "postversion": "git push --follow-tags origin master"
   },
   "browserify": {
     "transform": [
