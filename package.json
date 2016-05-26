@@ -34,6 +34,7 @@
     "jquery": "^2.2.4",
     "jsdom": "^9.2.0",
     "mocha": "^2.5.2",
+    "npm-bump": "0.0.18",
     "postcss-reporter": "^1.2.1",
     "postcss-scss": "^0.1.2",
     "sass-loader": "^3.2.0",
@@ -50,7 +51,9 @@
     "build-dev": "gulp build-dev",
     "start": "webpack-dev-server --config demo/webpack.config.js --content-base demo",
     "test": "mocha --compilers js:babel-core/register src/js/test/*.js",
-    "test.watch": "mocha --compilers js:babel-core/register --watch ./src/js/**/*.js"
+    "release.major": "npm run test && npm run build && npm-bump major",
+    "release.minor": "npm run test && npm run build && npm-bump minor",
+    "release.patch": "npm run test && npm run build && npm-bump patch"
   },
   "browserify": {
     "transform": [
