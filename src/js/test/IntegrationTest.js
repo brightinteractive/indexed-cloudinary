@@ -23,7 +23,7 @@ describe("changeWallpaper", () => {
       ElasticSearch
     };
     
-    return changeWallpaper({searchTerms: ['tag1', 'tag2']}, stubs);
+    return changeWallpaper('#credits', {searchTerms: ['tag1', 'tag2']}, stubs);
   }));
 })
 
@@ -37,6 +37,7 @@ function stubDom() {
     <head></head>
     <body>
       <div id='carousel'></div>
+      <div id='credits'></div>
     </body>
   </html>
   `
