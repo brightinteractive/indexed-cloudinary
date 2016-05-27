@@ -1,6 +1,7 @@
 export default class Image {
     constructor(imageTransformer, indexedImage) {
-        this.url = imageTransformer.transformedUrl(indexedImage._id);
+        this.id=indexedImage._id;
+        this.url = imageTransformer.transformedUrl(this.id);
         this.title = indexedImage._source.title;
         this.alt = indexedImage._source.altText;
         this.credit = indexedImage._source.credit;
@@ -28,5 +29,16 @@ export default class Image {
 
     toHtml() {
         return `<li data-thumb="${this.url}"><img src="${this.url}" alt="${this.alt}"/><p class="image-description"><strong>${this.title}</strong></p><p class="image-description">${this.description()}</p></li>`
+    }
+
+    ratingHtml() {
+        return `<select id="${this.id}" class="rating" name="rating">
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>`
     }
 }

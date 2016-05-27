@@ -4,7 +4,7 @@ import Image from './Image';
 
 export function displayCarousel(elementSelector, {indexHost, searchTerms, cloudName, transformationOptions}, {$, Cloudinary, ElasticSearch} = {}) {
     if (!$) $ = require('jquery');
-    
+
     const imageIndex = new ImageIndex(indexHost, ElasticSearch);
     const hitsPromise = imageIndex.search(searchTerms);
     const imageTransformer = new ImageTransformer(cloudName, transformationOptions, Cloudinary);
@@ -25,12 +25,13 @@ export function displayCarousel(elementSelector, {indexHost, searchTerms, cloudN
                 slideMargin: 0,
                 thumbItem: 5
             });
-        });
+        })
+        .catch(error => console.error(error));
 }
 
-export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudName, transformationOptions}, {$, Cloudinary, ElasticSearch} = {}) {
+export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudName, transformationOptions, ratingsUrl}, {$, Cloudinary, ElasticSearch} = {}) {
     if (!$) $ = require('jquery');
-    
+
     const imageIndex = new ImageIndex(indexHost, ElasticSearch);
     const hitsPromise = imageIndex.search(searchTerms);
     const imageTransformer = new ImageTransformer(cloudName, transformationOptions, Cloudinary);
@@ -42,7 +43,17 @@ export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudNa
             $('body')
                 .css('background-image', `url("${image.url}")`)
                 .css('background-size', 'cover')
-                .css('background-attachment', 'fixed')
+                .css('background-attachment', 'fixed');
             $(creditSelector).append(image.description());
-        });
+
+            const ratingStars = $.parseHTML(image.ratingHtml());
+            $(creditSelector).append(ratingStars);
+            $(ratingStars).barrating({
+                theme: 'bootstrap-stars',
+                onSelect: function sendRatingToServer(value) {
+                    $.post(`${ratingsUrl}/rated-items/${image.id}/ratings`, {rating: value}, () => alert('Rating submitted'));
+                }
+            });
+        })
+        .catch(error => console.error(error));
 }

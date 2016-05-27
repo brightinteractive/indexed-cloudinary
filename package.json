@@ -9,6 +9,7 @@
   "dependencies": {
     "cloudinary-core": "^2.0.8",
     "elasticsearch": "^11.0.1",
+    "jquery-bar-rating": "^1.1.4",
     "lightslider": "^1.1.5"
   },
   "devDependencies": {
@@ -59,7 +60,8 @@
     ]
   },
   "browser": {
-    "lightslider": "./node_modules/lightslider/dist/js/lightslider.min.js"
+    "lightslider": "./node_modules/lightslider/dist/js/lightslider.min.js",
+    "jquery-bar-rating": "./node_modules/jquery-bar-rating/dist/jquery.barrating.min.js"
   },
   "browserify-shim": {
     "jquery": "global:jQuery"

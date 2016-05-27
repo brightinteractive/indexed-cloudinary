@@ -24,7 +24,8 @@ $(document).ready(function () {
                 cloudName: cloudName,
                 transformationOptions: {
                     quality: 80
-                }
+                },
+                ratingsUrl: 'http://ratings-dev.herokuapp.com'
             }
     );
 });
