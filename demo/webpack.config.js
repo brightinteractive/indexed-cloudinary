@@ -19,13 +19,16 @@ module.exports = {
     ]
   },
   entry: [
+    'webpack-dev-server/client?http://0.0.0.0:8080',
     './src/sass/indexed-cloudinary.scss',
     './demo/demo.js'
   ],
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
     new webpack.ProvidePlugin({
       $: "jquery",
-      jQuery: "jquery"
+      jQuery: "jquery",
     })
   ]
 }
