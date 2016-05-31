@@ -22,6 +22,11 @@ $RECYCLE.BIN/
 *.lnk
 
 
+### Mac ###
+
+.DS_Store
+
+
 ### Linux ###
 *~
 
