@@ -1,6 +1,6 @@
 export default class Image {
     constructor(imageTransformer, indexedImage) {
-        this.id=indexedImage._id;
+        this.id = indexedImage._id;
         this.url = imageTransformer.transformedUrl(this.id);
         this.title = indexedImage._source.title;
         this.alt = indexedImage._source.altText;
@@ -32,13 +32,16 @@ export default class Image {
     }
 
     ratingHtml() {
-        return `<select id="${this.id}" class="rating" name="rating">
+        return `<div style="opacity: 1;">
+        Rate this background:
+        <select id="${this.id}" class="rating" name="rating">
                         <option value=""></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
-                    </select>`
+                    </select>
+                    </div>`
     }
 }

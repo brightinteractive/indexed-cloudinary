@@ -48,7 +48,7 @@ export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudNa
 
             const ratingStars = $.parseHTML(image.ratingHtml());
             $(creditSelector).append(ratingStars);
-            $(ratingStars).barrating({
+            $(`${creditSelector} select`).barrating({
                 theme: 'bootstrap-stars',
                 onSelect: function sendRatingToServer(value) {
                     $.post(`${ratingsUrl}/rated-items/${image.id}/ratings`, {rating: value}, () => alert('Rating submitted'));
