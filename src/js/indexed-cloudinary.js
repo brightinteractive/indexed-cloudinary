@@ -68,16 +68,17 @@ export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudNa
                 .css('background-image', `url("${image.url}")`)
                 .css('background-size', 'cover')
                 .css('background-attachment', 'fixed');
-            $(creditSelector).append(image.description());
 
             const ratingStars = $.parseHTML(image.ratingHtml());
             $(creditSelector).append(ratingStars);
             $(`${creditSelector} select`).barrating({
                 theme: 'bootstrap-stars',
                 onSelect: function sendRatingToServer(value) {
-                    $.post(`${ratingsUrl}/rated-items/${image.id}/ratings`, {rating: value, url: window.location.href}, () => console.log('Rating submitted succesfully.'));
+                    $.post(`${ratingsUrl}/rated-items/${image.id}/ratings`, {rating: value, url: window.location.href}, () => console.log('Rating submitted successfully.'));
                 }
             });
+
+            $(creditSelector).append(`<div class="c-rating__credit">${image.description()}</div>`);
         })
         .catch(error => console.error(error));
 }
