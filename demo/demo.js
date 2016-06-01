@@ -1,7 +1,7 @@
 import * as indexedCloudinary from '../index';
 
 var indexHost = "https://paas:9e10152fc1e85865228bd1980e3fd55a@bifur-eu-west-1.searchly.com";
-var searchTerms = ['bognor_regis_gb'];
+var searchTerms = ['tenerife'];
 var cloudName = "hgawxotji";
 
 $(document).ready(function () {
@@ -25,7 +25,7 @@ $(document).ready(function () {
                 transformationOptions: {
                     quality: 80
                 },
-                ratingsUrl: 'http://ratings-dev.herokuapp.com'
+                ratingsUrl: 'http://hw-ratings-dev.herokuapp.com'
             }
     );
 });

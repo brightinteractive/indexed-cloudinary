@@ -75,7 +75,7 @@ export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudNa
             $(`${creditSelector} select`).barrating({
                 theme: 'bootstrap-stars',
                 onSelect: function sendRatingToServer(value) {
-                    $.post(`${ratingsUrl}/rated-items/${image.id}/ratings`, {rating: value}, () => console.log('Rating submitted succesfully.'));
+                    $.post(`${ratingsUrl}/rated-items/${image.id}/ratings`, {rating: value, url: window.location.href}, () => console.log('Rating submitted succesfully.'));
                 }
             });
         })
