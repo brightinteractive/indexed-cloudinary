@@ -32,7 +32,7 @@ export default class Image {
     }
 
     ratingHtml() {
-        return `<div style="opacity: 1;">
+        return `<div id="${this.id}-container" class="c-rating__stars">
         Rate this background:
         <select id="${this.id}" class="rating" name="rating">
                         <option value=""></option>
