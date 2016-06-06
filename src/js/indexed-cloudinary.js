@@ -64,25 +64,32 @@ export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudNa
         .then(hits => hits.map(hit => new Image(imageTransformer, hit)))
         .then(images => images[Math.floor(Math.random() * images.length)])
         .then(image => {
-            $('body')
-                .css('background-image', `url("${image.url}")`)
-                .css('background-size', 'cover')
-                .css('background-attachment', 'fixed');
+            if(image) {
+                $('body')
+                    .css('background-image', `url("${image.url}")`)
+                    .css('background-size', 'cover')
+                    .css('background-attachment', 'fixed');
 
-            const ratingStars = $.parseHTML(image.ratingHtml());
-            $(creditSelector).append(ratingStars);
-            $(`${creditSelector} select`).barrating({
-                theme: 'bootstrap-stars',
-                onSelect: function sendRatingToServer(value) {
-                    $(`#${image.id}-container`).hide();
-                    if(image.description() == '') {
-                        $(creditSelector).hide();
+                const ratingStars = $.parseHTML(image.ratingHtml());
+                $(creditSelector).append(ratingStars);
+                $(`${creditSelector} select`).barrating({
+                    theme: 'bootstrap-stars',
+                    onSelect: function sendRatingToServer(value) {
+                        $(`#${image.id}-container`).hide();
+                        if (image.description() == '') {
+                            $(creditSelector).hide();
+                        }
+                        $.post(`${ratingsUrl}/rated-items/${image.id}/ratings`, {
+                            rating: value,
+                            url: window.location.href
+                        }, () => console.log('Rating submitted successfully.'));
                     }
-                    $.post(`${ratingsUrl}/rated-items/${image.id}/ratings`, {rating: value, url: window.location.href}, () => console.log('Rating submitted successfully.'));
-                }
-            });
+                });
 
-            $(creditSelector).append(`<div class="c-rating__credit">${image.description()}</div>`);
+                $(creditSelector).append(`<div class="c-rating__credit">${image.description()}</div>`);
+            } else {
+                $(creditSelector).hide();
+            }
         })
         .catch(error => console.error(error));
 }
