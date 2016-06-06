@@ -1,6 +1,7 @@
 import ImageIndex from './ImageIndex';
 import ImageTransformer from './ImageTransformer';
 import Image from './Image';
+import {objectToQueryString} from './elastic-search-utils'
 
 const arrowLeft = `
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" version="1.1" x="0px" y="0px">
@@ -24,11 +25,11 @@ const arrowRight = `
     </g>
 </svg>`;
 
-export function displayCarousel(elementSelector, {indexHost, searchTerms, cloudName, transformationOptions}, {$, Cloudinary, ElasticSearch} = {}) {
+export function displayCarousel(elementSelector, {indexHost, queryString, cloudName, transformationOptions}, {$, Cloudinary, ElasticSearch} = {}) {
     if (!$) $ = require('jquery');
 
     const imageIndex = new ImageIndex(indexHost, ElasticSearch);
-    const hitsPromise = imageIndex.search(searchTerms);
+    const hitsPromise = imageIndex.search(queryString);
     const imageTransformer = new ImageTransformer(cloudName, transformationOptions, Cloudinary);
     const div = $(elementSelector);
 
@@ -53,11 +54,11 @@ export function displayCarousel(elementSelector, {indexHost, searchTerms, cloudN
         .catch(error => console.error(error));
 }
 
-export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudName, transformationOptions, ratingsUrl}, {$, Cloudinary, ElasticSearch} = {}) {
+export function changeWallpaper(creditSelector, {indexHost, queryString, cloudName, transformationOptions, ratingsUrl}, {$, Cloudinary, ElasticSearch} = {}) {
     if (!$) $ = require('jquery');
 
     const imageIndex = new ImageIndex(indexHost, ElasticSearch);
-    const hitsPromise = imageIndex.search(searchTerms);
+    const hitsPromise = imageIndex.search(queryString);
     const imageTransformer = new ImageTransformer(cloudName, transformationOptions, Cloudinary);
 
     return hitsPromise
