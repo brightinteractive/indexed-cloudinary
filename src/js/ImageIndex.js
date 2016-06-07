@@ -3,24 +3,14 @@ export default class ImageIndex {
         this.client = new Client({host});
     }
 
-    search(tags) {
-        const terms = tags.map(tag => {
-            return {
-                term: {
-                    keywords: tag
-                }
-            }
-        });
-
+    search(queryString) {
         return this.client.search({
             index: 'images',
             type: 'image',
             body: {
                 query: {
-                    constant_score: {
-                        filter: {
-                            and: terms
-                        }
+                    query_string: {
+                        query: queryString
                     }
                 }
             }

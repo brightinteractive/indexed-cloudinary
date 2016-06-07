@@ -1,13 +1,15 @@
 import * as indexedCloudinary from '../index';
 
-var indexHost = "https://paas:9e10152fc1e85865228bd1980e3fd55a@bifur-eu-west-1.searchly.com";
-var searchTerms = ['tenerife'];
+var indexHost = "https://holiday-weather:xyyqhqke07vhg57vrzf0ksrbzxbo4njy@bifur-eu-west-1.searchly.com";
+var filters = {category: 'tenerife', section: 'beach'};
+var wallpaperFilters = {category: 'tenerife', suitableForWallpaper: 'true'};
 var cloudName = "hgawxotji";
 
 $(document).ready(function () {
+    var queryString = indexedCloudinary.objectToQueryString(filters);
     indexedCloudinary.displayCarousel('#carousel', {
                 indexHost: indexHost,
-                searchTerms: searchTerms,
+                queryString: queryString,
                 cloudName: cloudName,
                 transformationOptions: {
                     width: 600,
@@ -18,9 +20,11 @@ $(document).ready(function () {
             }
     );
 
+
+    var wallpaperQueryString = indexedCloudinary.objectToQueryString(wallpaperFilters);
     indexedCloudinary.changeWallpaper('#credit', {
                 indexHost: indexHost,
-                searchTerms: searchTerms.concat(['wallpaper']),
+                queryString: wallpaperQueryString,
                 cloudName: cloudName,
                 transformationOptions: {
                     quality: 80
