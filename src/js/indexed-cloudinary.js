@@ -1,7 +1,6 @@
 import ImageIndex from './ImageIndex';
 import ImageTransformer from './ImageTransformer';
 import Image from './Image';
-import {objectToQueryString} from './elastic-search-utils'
 
 const arrowLeft = `
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" version="1.1" x="0px" y="0px">
@@ -87,3 +86,5 @@ export function changeWallpaper(creditSelector, {indexHost, queryString, cloudNa
         })
         .catch(error => console.error(error));
 }
+
+export {objectToQueryString} from './elastic-search-utils'

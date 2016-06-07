@@ -1,5 +1,6 @@
 export function objectToQueryString(jsObject) {
-    Object.keys(jsObject)
+    var queryString = Object.keys(jsObject)
         .map(key => `${key}:${jsObject[key]}`)
         .join(' AND ');
+    return queryString;
 }
