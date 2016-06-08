@@ -76,9 +76,6 @@ export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudNa
                     theme: 'bootstrap-stars',
                     onSelect: function sendRatingToServer(value) {
                         $(`#${image.id}-container`).hide();
-                        if (image.description() == '') {
-                            $(creditSelector).hide();
-                        }
                         $.post(`${ratingsUrl}/rated-items/${image.id}/ratings`, {
                             rating: value,
                             url: window.location.href
@@ -86,9 +83,7 @@ export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudNa
                     }
                 });
 
-                $(creditSelector).append(`<div class="c-rating__credit">${image.description()}</div>`);
-            } else {
-                $(creditSelector).hide();
+                $(creditSelector).append(`<div class="c-rating__credit"><strong>${image.title}</strong><br/>${image.description()}</div>`);
             }
         })
         .catch(error => console.error(error));
