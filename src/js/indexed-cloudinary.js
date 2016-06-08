@@ -70,21 +70,25 @@ export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudNa
                     .css('background-size', 'cover')
                     .css('background-attachment', 'fixed');
 
-                const ratingStars = $.parseHTML(image.ratingHtml());
-                $(creditSelector).append(ratingStars);
-                $(`${creditSelector} select`).barrating({
-                    theme: 'bootstrap-stars',
-                    onSelect: function sendRatingToServer(value) {
-                        $(`#${image.id}-container`).hide();
-                        $.post(`${ratingsUrl}/rated-items/${image.id}/ratings`, {
-                            rating: value,
-                            url: window.location.href
-                        }, () => console.log('Rating submitted successfully.'));
-                    }
-                });
+                displayRatingStars($, image, creditSelector, ratingsUrl);
 
                 $(creditSelector).append(`<div class="c-rating__credit"><strong>${image.title}</strong><br/>${image.description()}</div>`);
             }
         })
         .catch(error => console.error(error));
+}
+
+function displayRatingStars($, image, creditSelector, ratingsUrl) {
+    const ratingStars = $.parseHTML(image.ratingHtml());
+    $(creditSelector).append(ratingStars);
+    $(`${creditSelector} select`).barrating({
+        theme: 'bootstrap-stars',
+        onSelect: function sendRatingToServer(value) {
+            $(`#${image.id}-container`).hide();
+            $.post(`${ratingsUrl}/rated-items/${image.id}/ratings`, {
+                rating: value,
+                url: window.location.href
+            }, () => console.log('Rating submitted successfully.'));
+        }
+    });
 }
