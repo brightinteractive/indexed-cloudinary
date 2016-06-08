@@ -79,16 +79,21 @@ export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudNa
 }
 
 function displayRatingStars($, image, creditSelector, ratingsUrl) {
+    function sendRatingToServer(value) {
+        $.post(`${ratingsUrl}/rated-items/${image.id}/ratings`, {
+            rating: value,
+            url: window.location.href
+        }, () => console.log('Rating submitted successfully.'));
+    }
+
     const ratingStars = $.parseHTML(image.ratingHtml());
     $(creditSelector).append(ratingStars);
+
     $(`${creditSelector} select`).barrating({
         theme: 'bootstrap-stars',
-        onSelect: function sendRatingToServer(value) {
+        onSelect: (value) => {
             $(`#${image.id}-container`).hide();
-            $.post(`${ratingsUrl}/rated-items/${image.id}/ratings`, {
-                rating: value,
-                url: window.location.href
-            }, () => console.log('Rating submitted successfully.'));
+            sendRatingToServer(value);
         }
     });
 }
