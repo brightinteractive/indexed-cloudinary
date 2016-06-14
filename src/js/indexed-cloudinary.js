@@ -72,7 +72,9 @@ export function changeWallpaper(creditSelector, {indexHost, searchTerms, cloudNa
 
                 displayRatingStars($, image, creditSelector, ratingsUrl);
 
-                $(creditSelector).append(`<div class="c-rating__credit"><strong>${image.title}</strong><br/>${image.description()}</div>`);
+                $(creditSelector)
+                    .show()
+                    .append(`<div class="c-rating__credit"><strong>${image.title}</strong><br/>${image.description()}</div>`);
             }
         })
         .catch(error => console.error(error));

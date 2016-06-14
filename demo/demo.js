@@ -1,8 +1,8 @@
 import * as indexedCloudinary from '../index';
 
-var indexHost = "https://paas:9e10152fc1e85865228bd1980e3fd55a@bifur-eu-west-1.searchly.com";
+var indexHost = "https://holiday-weather:ude7tgz3eftfgltovjg2mm9uol728kl0@bifur-eu-west-1.searchly.com";
 var searchTerms = ['tenerife'];
-var cloudName = "hgawxotji";
+var cloudName = "hj7ggro7s";
 
 $(document).ready(function () {
     indexedCloudinary.displayCarousel('#carousel', {
