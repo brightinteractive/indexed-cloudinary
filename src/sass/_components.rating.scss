@@ -1,56 +1,60 @@
-
+@media only screen and(max-width: 1000px) {
+  .c-rating {
+    visibility: hidden;
+  }
+}
 
 .c-rating {
-	display: none;
-	position: fixed;
-	width: 150px;
-	z-index: 999;
-	padding: 10px;
-	margin: 0;
-	box-sizing: border-box;
-	right: 15px;
-	bottom: 15px;
-	border-radius: 5px;
-	background: #fff;
-	box-shadow: 0 1px 4px rgba(10, 10, 10, 0.31);
-	color: #444;
-	text-align: center;
-	font-weight: normal;
-	font-size: 13px;
+  display: none;
+  position: fixed;
+  width: 150px;
+  z-index: 999;
+  padding: 10px;
+  margin: 0;
+  box-sizing: border-box;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(10, 10, 10, 0.31);
+  color: #444;
+  text-align: center;
+  font-weight: normal;
+  font-size: 13px;
 
-	a,
-	a:visited {
-		color: #347ab6;
-		text-decoration: none;
-	}
+  a,
+  a:visited {
+    color: #347ab6;
+    text-decoration: none;
+  }
 }
 
 .c-rating__stars {
-	margin: 2px 0;
+  margin: 2px 0;
 
-	a {
-		font: normal normal normal 18px/1 'Glyphicons Halflings';
-	    text-rendering: auto;
-	    -webkit-font-smoothing: antialiased;
-	    text-decoration: none;
-	    margin-right: 2px;
-	
-		&:after {
-		    content: '\e006';
-		    color: #ececec;
-		    font-size: 22px;
-		    text-shadow: 0 1px 1px #a2a2a2;
-		}
+  a {
+    font: normal normal normal 18px/1 'Glyphicons Halflings';
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    text-decoration: none;
+    margin-right: 2px;
 
-		&:hover,
-	    &:active {
-			&:after {
-	    		color: #ffdf88;
-	    	}
-	    }
+    &:after {
+      content: '\e006';
+      color: #ececec;
+      font-size: 22px;
+      text-shadow: 0 1px 1px #a2a2a2;
+    }
 
-		&:nth-child(5) {
-			margin-right: 0;
-		}
-	}
+    &:hover,
+    &:active {
+      &:after {
+        color: #ffdf88;
+      }
+    }
+
+    &:nth-child(5) {
+      margin-right: 0;
+    }
+  }
 }
