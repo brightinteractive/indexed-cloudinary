@@ -3,6 +3,8 @@
 .c-rating {
 	display:none;
 	position: fixed;
+	width: 150px;
+	z-index: 999;
 	padding: 10px;
 	margin: 0;
 	box-sizing: border-box;
