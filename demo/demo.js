@@ -1,9 +1,9 @@
 import * as indexedCloudinary from '../index';
 
-var indexHost = "https://holiday-weather:xyyqhqke07vhg57vrzf0ksrbzxbo4njy@bifur-eu-west-1.searchly.com";
-var filters = {category: 'tenerife', sections: 'all'};
-var wallpaperFilters = {category: 'tenerife', suitableForWallpaper: 'true'};
-var cloudName = "hgawxotji";
+var indexHost = 'https://holiday-weather-images:e4fyljt9lltrbffuaxlrswjuivluj5sh@bifur-eu-west-1.searchly.com';
+var filters = {category: 'brighton', sections: 'beach'};
+var wallpaperFilters = {category: 'brighton', suitableForWallpaper: 'true'};
+var cloudName = "hgzidbefh";
 
 $(document).ready(function () {
     var queryString = indexedCloudinary.objectToQueryString(filters);
