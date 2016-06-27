@@ -12,7 +12,7 @@ const arrowLeft = `
             </path>
         </g>
     </g>
-</svg>`; 
+</svg>`;
 
 const arrowRight = `
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" version="1.1" x="0px" y="0px">
@@ -64,7 +64,7 @@ export function changeWallpaper(creditSelector, {indexHost, queryString, cloudNa
         .then(hits => hits.map(hit => new Image(imageTransformer, hit)))
         .then(images => images[Math.floor(Math.random() * images.length)])
         .then(image => {
-            if(image) {
+            if (image) {
                 $('body')
                     .css('background-image', `url("${image.url}")`)
                     .css('background-size', 'cover')
@@ -73,6 +73,9 @@ export function changeWallpaper(creditSelector, {indexHost, queryString, cloudNa
                 displayRatingStars($, image, creditSelector, ratingsUrl);
 
                 $(creditSelector).append(`<div class="c-rating__credit"><strong>${image.title}</strong><br/>${image.description()}</div>`);
+                return true;
+            } else {
+                return false;
             }
         })
         .catch(error => console.error(error));
