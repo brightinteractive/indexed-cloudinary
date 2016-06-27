@@ -18,7 +18,7 @@ $(document).ready(function () {
             }
     );
 
-    indexedCloudinary.changeWallpaper('#credit', {
+    var result = indexedCloudinary.changeWallpaper('#credit', {
                 indexHost: indexHost,
                 searchTerms: searchTerms.concat(['wallpaper']),
                 cloudName: cloudName,
@@ -28,4 +28,6 @@ $(document).ready(function () {
                 ratingsUrl: 'http://hw-ratings-dev.herokuapp.com'
             }
     );
+
+    result.then(function(wallpaperHasChanged) { if(wallpaperHasChanged) {console.log("Wallpaper changed!")}})
 });
