@@ -9,6 +9,14 @@ export default class Image {
         this.owner = indexedImage._source.owner;
     }
 
+    alt() {
+        return this.alt ? this.alt : '';
+    }
+
+    title() {
+        return this.title ? this.title : '';
+    }
+
     description() {
         if (this.shouldCredit()) {
             return this.credit;
@@ -28,7 +36,7 @@ export default class Image {
     }
 
     toHtml() {
-        return `<li data-thumb="${this.url}"><img src="${this.url}" alt="${this.alt}"/><p class="image-description"><strong>${this.title}</strong></p><p class="image-description">${this.description()}</p></li>`
+        return `<li data-thumb="${this.url}"><img src="${this.url}" alt="${this.alt()}"/><p class="image-description"><strong>${this.title()}</strong></p><p class="image-description">${this.description()}</p></li>`
     }
 
     ratingHtml() {
