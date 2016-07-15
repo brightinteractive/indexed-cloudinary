@@ -24,10 +24,10 @@ const arrowRight = `
     </g>
 </svg>`;
 
-export function displayCarousel(elementSelector, {indexHost, queryString, cloudName, transformationOptions}, {$, Cloudinary, ElasticSearch} = {}) {
+export function displayCarousel(elementSelector, {indexHost, index, queryString, cloudName, transformationOptions}, {$, Cloudinary, ElasticSearch} = {}) {
     if (!$) $ = require('jquery');
 
-    const imageIndex = new ImageIndex(indexHost, ElasticSearch);
+    const imageIndex = new ImageIndex(indexHost, index, ElasticSearch);
     const hitsPromise = imageIndex.search(queryString);
     const imageTransformer = new ImageTransformer(cloudName, transformationOptions, Cloudinary);
     const div = $(elementSelector);
@@ -53,10 +53,10 @@ export function displayCarousel(elementSelector, {indexHost, queryString, cloudN
         .catch(error => console.error(error));
 }
 
-export function changeWallpaper(creditSelector, {indexHost, queryString, cloudName, transformationOptions, ratingsUrl}, {$, Cloudinary, ElasticSearch} = {}) {
+export function changeWallpaper(creditSelector, {indexHost, index, queryString, cloudName, transformationOptions, ratingsUrl}, {$, Cloudinary, ElasticSearch} = {}) {
     if (!$) $ = require('jquery');
 
-    const imageIndex = new ImageIndex(indexHost, ElasticSearch);
+    const imageIndex = new ImageIndex(indexHost, index, ElasticSearch);
     const hitsPromise = imageIndex.search(queryString);
     const imageTransformer = new ImageTransformer(cloudName, transformationOptions, Cloudinary);
 
