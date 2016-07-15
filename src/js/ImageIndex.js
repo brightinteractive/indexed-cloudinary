@@ -1,5 +1,5 @@
 export default class ImageIndex {
-    constructor(host, index='newimages', Client = require('elasticsearch').Client) {
+    constructor(host, index='images', Client = require('elasticsearch').Client) {
         this.client = new Client({host});
     }
 
