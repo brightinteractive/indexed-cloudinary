@@ -5,7 +5,7 @@ export default class ImageIndex {
 
     search(queryString) {
         return this.client.search({
-            index,
+            index: this.index,
             type: 'image',
             body: {
                 query: {
