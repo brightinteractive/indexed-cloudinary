@@ -62,8 +62,8 @@ class ElasticSearch {
   constructor() {
     
   }
-  
-  search({index, type, body}) {
+
+  queryStringSearch({q, index}) {
     return Promise.resolve({
       hits: {
         hits: [
