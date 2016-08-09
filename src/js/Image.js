@@ -9,7 +9,7 @@ export default class Image {
         this.owner = indexedImage._source.owner;
     }
 
-    alt() {
+    displayAlt() {
         return this.alt ? this.alt : '';
     }
 
@@ -36,7 +36,7 @@ export default class Image {
     }
 
     toHtml() {
-        return `<li data-thumb="${this.url}"><img src="${this.url}" alt="${this.alt()}"/><p class="image-description"><strong>${this.displayTitle()}</strong></p><p class="image-description">${this.description()}</p></li>`
+        return `<li data-thumb="${this.url}"><img src="${this.url}" alt="${this.displayAlt()}"/><p class="image-description"><strong>${this.displayTitle()}</strong></p><p class="image-description">${this.description()}</p></li>`
     }
 
     ratingHtml() {

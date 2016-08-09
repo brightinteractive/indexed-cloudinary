@@ -27,13 +27,10 @@ const arrowRight = `
 export function displayCarousel(elementSelector, {indexHost, index, queryString, cloudName, transformationOptions}, {$, Cloudinary, ElasticSearch} = {}) {
     if (!$) $ = require('jquery');
 
-    const imageIndex = new ImageIndex(indexHost, index, ElasticSearch);
-    const hitsPromise = imageIndex.search(queryString);
-    const imageTransformer = new ImageTransformer(cloudName, transformationOptions, Cloudinary);
     const div = $(elementSelector);
 
-    return hitsPromise
-        .then(hits => hits.map(hit => new Image(imageTransformer, hit)))
+    return findImages({indexHost, index, queryString, cloudName, transformationOptions},
+      {Cloudinary, ElasticSearch})
         .then(images => images.map(image => image.toHtml()))
         .then(imageListItems => imageListItems.join(''))
         .then(imagesHtml => `<ul>${imagesHtml}</ul>`)
@@ -51,6 +48,16 @@ export function displayCarousel(elementSelector, {indexHost, index, queryString,
             });
         })
         .catch(error => console.error(error));
+}
+
+export function findImages({indexHost, index, queryString, cloudName, transformationOptions},
+  {Cloudinary, ElasticSearch} = {}) {
+    const imageIndex = new ImageIndex(indexHost, index, ElasticSearch);
+    const hitsPromise = imageIndex.search(queryString);
+    const imageTransformer = new ImageTransformer(cloudName, transformationOptions, Cloudinary);
+
+    return hitsPromise
+      .then(hits => hits.map(hit => new Image(imageTransformer, hit)));
 }
 
 export function changeWallpaper(creditSelector, {indexHost, index, queryString, cloudName, transformationOptions, ratingsUrl}, {$, Cloudinary, ElasticSearch} = {}) {
