@@ -24,12 +24,14 @@ const arrowRight = `
     </g>
 </svg>`;
 
-export function displayCarousel(elementSelector, {indexHost, index, queryString, cloudName, transformationOptions}, {$, Cloudinary, ElasticSearch} = {}) {
+export function displayCarousel(elementSelector,
+  {indexHost, indexAuth, index, queryString, cloudName, transformationOptions},
+  {$, Cloudinary, ElasticSearch} = {}) {
     if (!$) $ = require('jquery');
 
     const div = $(elementSelector);
 
-    return findImages({indexHost, index, queryString, cloudName, transformationOptions},
+    return findImages({indexHost, indexAuth, index, queryString, cloudName, transformationOptions},
       {Cloudinary, ElasticSearch})
         .then(images => images.map(image => image.toHtml()))
         .then(imageListItems => imageListItems.join(''))
@@ -50,9 +52,9 @@ export function displayCarousel(elementSelector, {indexHost, index, queryString,
         .catch(error => console.error(error));
 }
 
-export function findImages({indexHost, index, queryString, cloudName, transformationOptions},
+export function findImages({indexHost, indexAuth, index, queryString, cloudName, transformationOptions},
   {Cloudinary, ElasticSearch} = {}) {
-    const imageIndex = new ImageIndex(indexHost, index, ElasticSearch);
+    const imageIndex = new ImageIndex(indexHost, indexAuth, index, ElasticSearch);
     const hitsPromise = imageIndex.search(queryString);
     const imageTransformer = new ImageTransformer(cloudName, transformationOptions, Cloudinary);
 
@@ -60,15 +62,13 @@ export function findImages({indexHost, index, queryString, cloudName, transforma
       .then(hits => hits.map(hit => new Image(imageTransformer, hit)));
 }
 
-export function changeWallpaper(creditSelector, {indexHost, index, queryString, cloudName, transformationOptions, ratingsUrl}, {$, Cloudinary, ElasticSearch} = {}) {
+export function changeWallpaper(creditSelector,
+  {indexHost, indexAuth, index, queryString, cloudName, transformationOptions, ratingsUrl},
+  {$, Cloudinary, ElasticSearch} = {}) {
     if (!$) $ = require('jquery');
 
-    const imageIndex = new ImageIndex(indexHost, index, ElasticSearch);
-    const hitsPromise = imageIndex.search(queryString);
-    const imageTransformer = new ImageTransformer(cloudName, transformationOptions, Cloudinary);
-
-    return hitsPromise
-        .then(hits => hits.map(hit => new Image(imageTransformer, hit)))
+    return findImages({indexHost, indexAuth, index, queryString, cloudName, transformationOptions},
+      {Cloudinary, ElasticSearch})
         .then(images => images[Math.floor(Math.random() * images.length)])
         .then(image => {
             if (image) {

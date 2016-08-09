@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "cloudinary-core": "^2.0.8",
-    "elasticsearch": "^11.0.1",
+    "isomorphic-fetch": "^2.2.1",
     "jquery-bar-rating": "^1.1.4",
     "lightslider": "^1.1.5"
   },
