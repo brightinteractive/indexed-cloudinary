@@ -54,7 +54,7 @@
     "build-dev": "gulp build-dev",
     "start": "webpack-dev-server --config demo/webpack.config.js --content-base demo",
     "test": "mocha --compilers js:babel-core/register src/js/test/*.js",
-    "preversion": "npm run test && npm run build && git add dist",
+    "preversion": "npm run build && git add dist",
     "postversion": "git push --follow-tags origin master"
   },
   "browserify": {
