@@ -4,7 +4,7 @@ export default class ImageTransformer {
         this.options = options;
     }
 
-    transformedUrl(id) {
-        return this.cloudinary.url(id, this.options)
+    transformedUrl(id, initialTransformation) {
+        return this.cloudinary.url(id, {transformation: [initialTransformation, this.options]})
     }
 }

@@ -1,7 +1,14 @@
 export default class Image {
     constructor(imageTransformer, indexedImage) {
+        const additionalOptions = {
+            x: indexedImage._source.cropX,
+            y: indexedImage._source.cropY,
+            width: indexedImage._source.cropWidth,
+            height: indexedImage._source.cropHeight,
+            crop: "crop"
+        };
         this.id = indexedImage._id;
-        this.url = imageTransformer.transformedUrl(this.id);
+        this.url = imageTransformer.transformedUrl(this.id, additionalOptions);
         this.title = indexedImage._source.title;
         this.alt = indexedImage._source.altText;
         this.credit = indexedImage._source.credit;
