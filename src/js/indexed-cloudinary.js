@@ -1,6 +1,6 @@
-import ImageIndex from './ImageIndex';
-import ImageTransformer from './ImageTransformer';
-import Image from './Image';
+import ImageIndex from "./ImageIndex";
+import ImageTransformer from "./ImageTransformer";
+import Image from "./Image";
 
 const arrowLeft = `
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" version="1.1" x="0px" y="0px">
@@ -38,7 +38,7 @@ export function displayCarousel(elementSelector,
         .then(imagesHtml => `<ul>${imagesHtml}</ul>`)
         .then(carouselHtml => {
             const carousel = $.parseHTML(carouselHtml);
-            div.append(carousel);
+            div.empty().append(carousel);
             $(carousel).lightSlider({
                 gallery: true,
                 item: 1,

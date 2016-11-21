@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+import fetch from "isomorphic-fetch";
 
 export default class ESClient {
 
@@ -9,7 +9,7 @@ export default class ESClient {
   queryStringSearch({ q, index }) {
     const query = encodeURIComponent(q);
 
-    return fetch(`${this.config.host}/${index}/_search?q=${query}`, {
+    return fetch(`${this.config.host}/${index}/_search?q=${query}&sort=carouselOrder:desc`, {
       cors: true,
       headers: new Headers({
         Authorization: `Basic ${btoa(this.config.auth)}`,
