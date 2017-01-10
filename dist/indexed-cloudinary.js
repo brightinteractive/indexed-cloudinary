@@ -28530,7 +28530,7 @@ var ESClient = function () {
 
       var query = encodeURIComponent(q);
 
-        return (0, _isomorphicFetch2.default)(this.config.host + "/" + index + "/_search?q=" + query + "&sort=carouselOrder:asc&size=1000", {
+      return (0, _isomorphicFetch2.default)(this.config.host + "/" + index + "/_search?q=" + query + "&sort=carouselOrder:asc&size=1000", {
         cors: true,
         headers: new Headers({
           Authorization: "Basic " + btoa(this.config.auth)
