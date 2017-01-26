@@ -1,10 +1,11 @@
 export default class Image {
     constructor(imageTransformer, indexedImage) {
+      debugger;
         const additionalOptions = {
-            x: indexedImage._source.cropX,
-            y: indexedImage._source.cropY,
-            width: indexedImage._source.cropWidth,
-            height: indexedImage._source.cropHeight,
+          x: indexedImage._source.cropX == '0' ? '0.0' : indexedImage._source.cropX,
+          y: indexedImage._source.cropY == '0' ? '0.0' : indexedImage._source.cropY,
+          width: indexedImage._source.cropWidth == '1' ? '1.0' : indexedImage._source.cropWidth,
+          height: indexedImage._source.cropHeight == '1' ? '1.0' : indexedImage._source.cropHeight,
             crop: "crop"
         };
         this.id = indexedImage._id;
