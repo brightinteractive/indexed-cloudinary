@@ -24,6 +24,10 @@ export default class Image {
         return this.title ? this.title : '';
     }
 
+    titleLength() {
+        return this.displayTitle().length;
+    }
+
     description() {
         if (this.shouldCredit()) {
             return this.credit;
