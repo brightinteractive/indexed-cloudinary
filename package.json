@@ -11,7 +11,8 @@
     "cloudinary-core": "^2.0.8",
     "isomorphic-fetch": "^2.2.1",
     "jquery-bar-rating": "^1.1.4",
-    "lightslider": "^1.1.5"
+    "lightslider": "^1.1.5",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
