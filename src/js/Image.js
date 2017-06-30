@@ -1,6 +1,5 @@
 export default class Image {
     constructor(imageTransformer, indexedImage) {
-      debugger;
         const additionalOptions = {
           x: indexedImage._source.cropX == '0' ? '0.0' : indexedImage._source.cropX,
           y: indexedImage._source.cropY == '0' ? '0.0' : indexedImage._source.cropY,
