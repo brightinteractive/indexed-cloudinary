@@ -33,7 +33,6 @@ export function displayCarousel(elementSelector,
 
     return findImages({indexHost, indexAuth, index, queryString, cloudName, transformationOptions},
       {Cloudinary, ElasticSearch})
-        .then(images => sortBy(images, i => -i.titleLength()))
         .then(images => images.map(image => image.toHtml()))
         .then(imageListItems => imageListItems.join(''))
         .then(imagesHtml => `<ul>${imagesHtml}</ul>`)
