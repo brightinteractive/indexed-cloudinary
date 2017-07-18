@@ -21,7 +21,7 @@ export default class Image {
     }
 
     displayTitle() {
-        return this.title ? this.title : '';
+        return this.title || ''
     }
 
     titleLength() {
@@ -47,7 +47,19 @@ export default class Image {
     }
 
     toHtml() {
-        return `<li data-thumb="${this.url}"><img src="${this.url}" alt="${this.displayAlt()}"/><p class="image-description"><strong>${this.displayTitle()}</strong></p><p class="image-description">${this.description()}</p></li>`
+        return `
+            <li data-thumb="${this.url}">
+                <div class="image-description-container">
+                    <p class="image-description">
+                        ${this.displayTitle()}
+                    </p>
+                    <p class="image-description">
+                        ${this.description()}
+                    </p>
+                </div>
+                <img src="${this.url}" alt="${this.displayAlt()}"/>
+            </li>
+        `;
     }
 
     ratingHtml() {
