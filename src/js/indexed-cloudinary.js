@@ -3,6 +3,8 @@ import ImageTransformer from "./ImageTransformer";
 import Image from "./Image";
 import sortBy from 'lodash/sortby';
 
+var dataLayer = (window.dataLayer = window.dataLayer || [])
+
 const arrowLeft = `
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" version="1.1" x="0px" y="0px">
     <g fill="none" fill-rule="evenodd" stroke="#000" stroke-width="1">
@@ -30,6 +32,8 @@ export function displayCarousel(elementSelector,
     if (!$) $ = require('jquery');
 
     const div = $(elementSelector);
+    var lastInteractionTime
+    var prevIdx = -1
 
     return findImages({indexHost, indexAuth, index, queryString, cloudName, transformationOptions},
       {Cloudinary, ElasticSearch})
@@ -46,7 +50,28 @@ export function displayCarousel(elementSelector,
                 slideMargin: 0,
                 thumbItem: 5,
                 prevHtml: arrowLeft,
-                nextHtml: arrowRight
+                nextHtml: arrowRight,
+                onBeforeSlide: (el) => {
+                    const enteringIdx = el.getCurrentSlideCount() - 1
+                    const count = uniq(Array.from($(el).find('.carousel-image')).map(x => x.dataset.imageId)).length
+
+                    if (prevIdx > 0 && prevIdx < count - 1 && lastInteractionTime) {
+                        const id = $(el)
+                            .find(`.carousel-image:nth-of-type(${prevIdx})`)
+                            .attr('data-image-id')
+
+                        dataLayer.push({
+                            event: 'ga-event',
+                            eventCategory: 'Image Carousel',
+                            eventAction: 'view',
+                            eventLabel: id,
+                            eventValue: Date.now() - lastInteractionTime
+                        })
+                    }
+
+                    lastInteractionTime = Date.now()
+                    prevIdx = enteringIdx
+                }
             });
         })
         .catch(error => console.error(error));
@@ -108,6 +133,17 @@ function displayRatingStars($, image, creditSelector, ratingsUrl) {
             sendRatingToServer(value);
         }
     });
+}
+
+function uniq(xs) {
+    const set = {}
+    xs.forEach(x => set[x] = x)
+
+    return Object.keys(set)
+}
+
+function isLastElement(el) {
+    return !el.nextElementSibling
 }
 
 export {objectToQueryString} from './elastic-search-utils'
