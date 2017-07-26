@@ -13,6 +13,7 @@ export default class Image {
         this.alt = indexedImage._source.altText;
         this.credit = indexedImage._source.credit;
         this.linkBack = indexedImage._source.linkBack;
+        this.affiliateUrl = indexedImage._source.affiliateUrl;
         this.owner = indexedImage._source.owner;
     }
 
@@ -48,7 +49,7 @@ export default class Image {
 
     toHtml() {
         return `
-            <li data-thumb="${this.url}">
+            <li class="carousel-image" data-image-id="${this.id}" data-thumb="${this.url}">
                 <div class="image-description-container">
                     <p class="image-description">
                         ${this.displayTitle()}
@@ -57,7 +58,13 @@ export default class Image {
                         ${this.description()}
                     </p>
                 </div>
-                <img src="${this.url}" alt="${this.displayAlt()}"/>
+                ${
+                    this.affiliateUrl
+                    ? ` <a href=${this.affiliateUrl} target="_blank">
+                            <img src="${this.url}" alt="${this.displayAlt()}" />
+                        </a>`
+                    : `<img src="${this.url}" alt="${this.displayAlt()}" />`
+                }
             </li>
         `;
     }
