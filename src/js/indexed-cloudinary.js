@@ -2,6 +2,10 @@ import ImageIndex from "./ImageIndex";
 import ImageTransformer from "./ImageTransformer";
 import Image from "./Image";
 import sortBy from 'lodash/sortby';
+import shuffle from 'lodash/shuffle';
+import uniq from 'lodash/uniq';
+
+const SHUFFLE_CHANCE = 0.15
 
 var dataLayer = (window.dataLayer = window.dataLayer || [])
 
@@ -37,6 +41,13 @@ export function displayCarousel(elementSelector,
 
     return findImages({indexHost, indexAuth, index, queryString, cloudName, transformationOptions},
       {Cloudinary, ElasticSearch})
+        .then(images => {
+            if (Math.random() < SHUFFLE_CHANCE) {
+                return shuffle(images)
+            } else {
+                return images
+            }
+        })
         .then(images => images.map(image => image.toHtml()))
         .then(imageListItems => imageListItems.join(''))
         .then(imagesHtml => `<ul>${imagesHtml}</ul>`)
@@ -133,17 +144,6 @@ function displayRatingStars($, image, creditSelector, ratingsUrl) {
             sendRatingToServer(value);
         }
     });
-}
-
-function uniq(xs) {
-    const set = {}
-    xs.forEach(x => set[x] = x)
-
-    return Object.keys(set)
-}
-
-function isLastElement(el) {
-    return !el.nextElementSibling
 }
 
 export {objectToQueryString} from './elastic-search-utils'
