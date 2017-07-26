@@ -1,17 +1,17 @@
 import * as indexedCloudinary from '../index';
 
 var indexHost = 'https://bifur-eu-west-1.searchly.com';
-var indexAuth = 'holiday-weather-new:z2jco6zqxycnrclgorrnncrynpwxbsqi';
-var filters = {category: 'tenerife', sections: 'beach'};
-var wallpaperFilters = {category: 'tenerife', suitableForWallpaper: 'true'};
-var cloudName = "hj7ggro7s";
+var indexAuth = 'holiday-weather-images:e4fyljt9lltrbffuaxlrswjuivluj5sh';
+var filters = {category: 'brighton', sections: 'beach'};
+var wallpaperFilters = {category: 'brighton', suitableForWallpaper: 'true'};
+var cloudName = "hgzidbefh";
 
 $(document).ready(function () {
   var queryString = indexedCloudinary.objectToQueryString(filters);
   indexedCloudinary.displayCarousel('#carousel', {
       indexHost: indexHost,
       indexAuth: indexAuth,
-      index: 'newimages',
+      index: 'images',
       queryString: queryString,
       cloudName: cloudName,
       transformationOptions: {
@@ -28,7 +28,7 @@ $(document).ready(function () {
   indexedCloudinary.changeWallpaper('#credit', {
       indexHost: indexHost,
       indexAuth: indexAuth,
-      index: 'newimages',
+      index: 'images',
       queryString: wallpaperQueryString,
       cloudName: cloudName,
       transformationOptions: {
