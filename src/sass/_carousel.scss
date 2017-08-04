@@ -26,11 +26,21 @@
 
         .image-description-container {
             position: absolute;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.3);
             color: white;
             padding: 5px;
             width: 100%;
             bottom: 0;
+
+            @media (max-height: 900px) {
+                font-size: 12px;
+            }
+
+            a {
+
+                color: white;
+                text-decoration: underline;
+            }
         }
 }
 
