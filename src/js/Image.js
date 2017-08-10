@@ -22,7 +22,7 @@ export default class Image {
     }
 
     displayTitle() {
-        return this.title || ''
+        return this.title ? this.title : '';
     }
 
     titleLength() {
@@ -48,25 +48,7 @@ export default class Image {
     }
 
     toHtml() {
-        return `
-            <li class="carousel-image" data-image-id="${this.id}" data-thumb="${this.url}">
-                <div class="image-description-container">
-                    <p class="image-description">
-                        ${this.displayTitle()}
-                    </p>
-                    <p class="image-description">
-                        ${this.description()}
-                    </p>
-                </div>
-                ${
-                    this.affiliateUrl
-                    ? ` <a href=${this.affiliateUrl} target="_blank">
-                            <img src="${this.url}" alt="${this.displayAlt()}" />
-                        </a>`
-                    : `<img src="${this.url}" alt="${this.displayAlt()}" />`
-                }
-            </li>
-        `;
+        return `<li data-thumb="${this.url}"><img src="${this.url}" alt="${this.displayAlt()}"/><p class="image-description"><strong>${this.displayTitle()}</strong></p><p class="image-description">${this.description()}</p></li>`
     }
 
     ratingHtml() {
