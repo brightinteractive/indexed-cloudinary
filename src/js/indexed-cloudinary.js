@@ -36,7 +36,6 @@ export function displayCarousel(elementSelector,
     if (!$) $ = require('jquery');
 
     const div = $(elementSelector);
-    $(div).addClass('carousel')
     var lastInteractionTime
     var prevIdx = -1
 
